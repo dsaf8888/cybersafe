@@ -2983,6 +2983,32 @@
 }
 .cs-home .lh-issue-warn { border-left-color: #ffa400; }
 .cs-home .lh-issue-info { border-left-color: #38bdf8; }
+.cs-home .lh-issue-ok   { border-left-color: #16a34a; opacity: 0.82; }
+.cs-home .lh-issue-ok h4 { color: #047857; }
+
+/* Collapsed passing-checks accordion */
+.cs-home .lh-passing-toggle summary {
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--muted);
+  padding: 8px 12px;
+  background: #f1f5f9;
+  border-radius: 8px;
+  list-style: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  user-select: none;
+}
+.cs-home .lh-passing-toggle summary::before {
+  content: '▸';
+  font-size: 0.7rem;
+  transition: transform 0.2s;
+}
+.cs-home .lh-passing-toggle[open] summary::before { transform: rotate(90deg); }
+.cs-home .lh-passing-toggle summary:hover { background: #e2e8f0; color: var(--text); }
+.cs-home .lh-passing-toggle summary::-webkit-details-marker { display: none; }
 .cs-home .lh-issue-head {
   display: flex;
   justify-content: space-between;
