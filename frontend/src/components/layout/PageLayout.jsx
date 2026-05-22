@@ -115,6 +115,7 @@ export function SiteFooter() {
             <li><Link to="/about#contact">Contact Us</Link></li>
             <li><Link to="/report-issue">Report an Issue</Link></li>
             <li><Link to="/help">Help Center</Link></li>
+            <li><Link to="/set-content">⚙️ Set Tool Content</Link></li>
           </ul>
         </div>
         <div className="footer-col">

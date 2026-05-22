@@ -292,6 +292,76 @@ export default function LandingPage4() {
             </ul>
             <Link to="/tools/phishing-quiz" className="tool-link">Take quiz →</Link>
           </div>
+          <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#eff6ff,#bfdbfe)' }}>📊</div>
+            <div className="tool-name">Account Security Score</div>
+            <ul className="tool-checks">
+              <li>Personal habit survey</li>
+              <li>Get a 0–100 score</li>
+              <li>See your weakest areas</li>
+            </ul>
+            <Link to="/tools/account-security-score" className="tool-link">Get my score →</Link>
+          </div>
+          <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#ecfeff,#a5f3fc)' }}>🌐</div>
+            <div className="tool-name">Browser Security Checker</div>
+            <ul className="tool-checks">
+              <li>Detect outdated browsers</li>
+              <li>Spot fingerprint leaks</li>
+              <li>Audit privacy settings</li>
+            </ul>
+            <Link to="/tools/browser-security" className="tool-link">Auto-scan →</Link>
+          </div>
+          <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#fdf2f8,#fbcfe8)' }}>💬</div>
+            <div className="tool-name">Scam Message Analyzer</div>
+            <ul className="tool-checks">
+              <li>Paste any SMS / email</li>
+              <li>14 scam patterns detected</li>
+              <li>Red flags highlighted inline</li>
+            </ul>
+            <Link to="/tools/scam-analyzer" className="tool-link">Analyze text →</Link>
+          </div>
+          <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#fff1f2,#fecdd3)' }}>📁</div>
+            <div className="tool-name">File Safety Checker</div>
+            <ul className="tool-checks">
+              <li>Drag &amp; drop any file</li>
+              <li>SHA-256 + extension check</li>
+              <li>Spot disguised executables</li>
+            </ul>
+            <Link to="/tools/file-safety" className="tool-link">Scan file →</Link>
+          </div>
+          <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#f0f9ff,#bae6fd)' }}>📶</div>
+            <div className="tool-name">WiFi Safety Checker</div>
+            <ul className="tool-checks">
+              <li>Home / Public / Office wizard</li>
+              <li>Encryption + router checks</li>
+              <li>Tailored hardening steps</li>
+            </ul>
+            <Link to="/tools/wifi-safety" className="tool-link">Check WiFi →</Link>
+          </div>
+          <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#fef3c7,#fde68a)' }}>🔐</div>
+            <div className="tool-name">Social Media Privacy</div>
+            <ul className="tool-checks">
+              <li>Instagram, Facebook, X &amp; more</li>
+              <li>Per-platform checklists</li>
+              <li>Direct settings shortcuts</li>
+            </ul>
+            <Link to="/tools/social-privacy" className="tool-link">Audit privacy →</Link>
+          </div>
+          <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#fff7ed,#fed7aa)' }}>⚡</div>
+            <div className="tool-name">Website Performance</div>
+            <ul className="tool-checks">
+              <li>Real Lighthouse scores</li>
+              <li>Core Web Vitals + opportunities</li>
+              <li>Mobile &amp; desktop audit</li>
+            </ul>
+            <Link to="/tools/website-performance" className="tool-link">Run audit →</Link>
+          </div>
         </div>
       </section>
 
