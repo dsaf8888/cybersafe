@@ -4,10 +4,10 @@
 
 .cs-home .blog-page {
   display: grid;
-  grid-template-columns: 280px 1fr;
+  grid-template-columns: 350px 1fr;
   gap: 32px;
   padding: 40px 60px 64px;
-  max-width: 1300px;
+  /* max-width: 1300px; */
   margin: 0 auto;
   width: 100%;
   align-items: start;
@@ -366,7 +366,7 @@
 /* DUAL-SCROLL VARIANT — left TOC and right article each scroll on their own */
 .cs-home .post-page.post-page-split {
   display: grid;
-  grid-template-columns: 240px minmax(0, 1fr);
+  grid-template-columns: 400px minmax(0, 1fr);
   gap: 0;
   padding: 0;
   max-width: none;
@@ -457,12 +457,12 @@
   margin-bottom: 10px;
 }
 .cs-home .post-toc ol { list-style: none; padding: 0; }
-.cs-home .post-toc li { margin-bottom: 7px; }
+.cs-home .post-toc li { margin-bottom: 10px; }
 .cs-home .post-toc a {
   color: var(--muted);
   font-size: 0.85rem;
   text-decoration: none;
-  line-height: 1.45;
+  line-height: 2.45;
   display: block;
 }
 .cs-home .post-toc a:hover { color: var(--blue); }
@@ -482,7 +482,6 @@
 
 .cs-home .post-article {
   min-width: 0;
-  max-width: 760px;
 }
 
 .cs-home .post-hero {
