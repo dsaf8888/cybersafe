@@ -2810,6 +2810,9 @@
   flex-direction: column;
   align-items: center;
   gap: 14px;
+  /* Reset anchor styles since the card is now a <a href="#cat-..."> */
+  text-decoration: none;
+  color: inherit;
   transition: transform 0.15s, box-shadow 0.15s, border-color 0.15s;
 }
 .cs-home .lh-score-card:hover {
@@ -2845,6 +2848,43 @@
   line-height: 1.4;
   margin-top: 4px;
 }
+
+/* ScoreRing overrides for the Lighthouse-style category cards.
+   The shared component was designed for dark backgrounds (white
+   text), so we recolor it via the `--score-color` CSS custom
+   property set on each card from JSX. We also use a grid overlay
+   instead of inset:0 so the number is guaranteed to sit at the
+   exact geometric centre of the SVG ring regardless of any layout
+   quirks, and we hide the "/ 100" subtext since the number alone
+   (Lighthouse-style) reads more cleanly. */
+.cs-home .lh-score-card .score-ring {
+  display: grid;
+  place-items: center;
+  line-height: 1;
+}
+.cs-home .lh-score-card .score-ring > * {
+  grid-area: 1 / 1;
+}
+.cs-home .lh-score-card .score-ring-text {
+  position: static;
+  inset: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+.cs-home .lh-score-card .score-ring-value {
+  color: var(--score-color, #0f172a);
+  font-size: 2.2rem;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+.cs-home .lh-score-card .score-ring-max {
+  display: none;
+}
+/* Belt-and-braces: kill any inherited underline on the anchor card */
+.cs-home .lh-score-card,
+.cs-home .lh-score-card * { text-decoration: none; }
 
 /* Core Web Vitals */
 .cs-home .lh-vitals-grid {

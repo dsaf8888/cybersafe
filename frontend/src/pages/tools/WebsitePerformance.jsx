@@ -291,7 +291,12 @@ export default function WebsitePerformance() {
               const pct   = c.score == null ? null : Math.round(c.score * 100)
               const color = scoreColor(c.score)
               return (
-                <a key={c.id} href={`#cat-${c.id}`} className="lh-score-card">
+                <a
+                  key={c.id}
+                  href={`#cat-${c.id}`}
+                  className="lh-score-card"
+                  style={{ '--score-color': color }}
+                >
                   <ScoreRing value={pct} color={color} size={108} />
                   <div className="lh-score-meta">
                     <span className="lh-score-icon" aria-hidden>{c.icon}</span>
