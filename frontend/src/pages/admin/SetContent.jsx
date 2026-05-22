@@ -32,6 +32,7 @@ const TOOLS = [
   {
     id: 'accountScore',
     label: 'Account Security Score',
+    short: 'Account Score',
     icon: '📊',
     tagline: 'Habit survey · 0–100 score',
     path: '/tools/account-security-score',
@@ -45,6 +46,7 @@ const TOOLS = [
   {
     id: 'wifiSafety',
     label: 'WiFi Safety Checker',
+    short: 'WiFi Safety',
     icon: '📶',
     tagline: 'Per-network type questions',
     path: '/tools/wifi-safety',
@@ -58,6 +60,7 @@ const TOOLS = [
   {
     id: 'socialPrivacy',
     label: 'Social Media Privacy',
+    short: 'Social Privacy',
     icon: '🔐',
     tagline: 'Per-platform privacy checklist',
     path: '/tools/social-privacy',
@@ -67,6 +70,7 @@ const TOOLS = [
   {
     id: 'scamAnalyzer',
     label: 'Scam Message Analyzer',
+    short: 'Scam Analyzer',
     icon: '💬',
     tagline: 'Regex pattern library',
     path: '/tools/scam-analyzer',
@@ -79,6 +83,7 @@ const TOOLS = [
   {
     id: 'phishingQuiz',
     label: 'Phishing Awareness Quiz',
+    short: 'Phishing Quiz',
     icon: '🎣',
     tagline: 'Real-world scenarios',
     path: '/tools/phishing-quiz',
@@ -96,10 +101,11 @@ export default function SetContent() {
   const [activeId, setActiveId] = useState(TOOLS[0].id)
   const [confirmReset, setConfirmReset] = useState(null) // toolId | 'all' | null
 
-  const activeTool = useMemo(() => TOOLS.find((t) => t.id === activeId), [activeId])
+  const activeTool   = useMemo(() => TOOLS.find((t) => t.id === activeId), [activeId])
   const ActiveEditor = activeTool.Editor
   const activeContent = overrides[activeId] || activeTool.defaults()
   const isOverridden  = overrides[activeId] != null
+  const overrideCount = Object.keys(overrides).length
 
   function onSave(nextContent) {
     dispatch(setToolContent({ toolId: activeId, content: nextContent }))
@@ -116,14 +122,15 @@ export default function SetContent() {
   return (
     <PageLayout>
       <div className="sc-page">
+        {/* === HEADER === */}
         <header className="sc-page-head">
-          <div>
-            <span className="sc-eyebrow">⚙️ Admin · Tool content</span>
+          <div className="sc-page-head-text">
+            <span className="sc-eyebrow">Admin · Tool content</span>
             <h1>Set Content</h1>
             <p>
-              Edit the questions, options, patterns, scenarios and recommendations that power our
-              tools. Changes are saved in Redux + <code>localStorage</code> and take effect immediately
-              for everyone using this browser.
+              Edit the questions, options, patterns, scenarios and recommendations that power
+              our tools. Changes are saved in Redux + <code>localStorage</code> and take effect
+              immediately for everyone using this browser.
             </p>
           </div>
           <div className="sc-page-actions">
@@ -131,110 +138,113 @@ export default function SetContent() {
             <button
               type="button"
               className="sc-btn-danger"
+              disabled={overrideCount === 0}
               onClick={() => setConfirmReset('all')}
             >
-              Reset all tools
+              Reset all tools{overrideCount > 0 && ` (${overrideCount})`}
             </button>
           </div>
         </header>
 
-        <div className="sc-layout">
-          {/* === SIDEBAR === */}
-          <aside className="sc-sidebar">
-            <div className="sc-sidebar-label">Tools</div>
-            <nav className="sc-tool-list">
-              {TOOLS.map((t) => {
-                const overridden = overrides[t.id] != null
-                return (
-                  <button
-                    key={t.id}
-                    type="button"
-                    className={`sc-tool-btn ${activeId === t.id ? 'active' : ''}`}
-                    onClick={() => setActiveId(t.id)}
-                  >
-                    <span className="sc-tool-icon">{t.icon}</span>
-                    <span className="sc-tool-meta">
-                      <strong>{t.label}</strong>
-                      <span>{t.tagline}</span>
-                    </span>
-                    {overridden && <span className="sc-tool-dot" title="Custom content" />}
-                  </button>
-                )
-              })}
-            </nav>
+        {/* === TOOL TAB STRIP === */}
+        <div className="sc-tools-strip" role="tablist" aria-label="Choose tool to edit">
+          {TOOLS.map((t) => {
+            const overridden = overrides[t.id] != null
+            const active     = activeId === t.id
+            return (
+              <button
+                key={t.id}
+                type="button"
+                role="tab"
+                aria-selected={active}
+                className={`sc-tools-tab ${active ? 'active' : ''}`}
+                onClick={() => setActiveId(t.id)}
+              >
+                <span className="sc-tools-tab-icon">{t.icon}</span>
+                <span className="sc-tools-tab-text">
+                  <strong>{t.short}</strong>
+                  <em>{t.tagline}</em>
+                </span>
+                {overridden && (
+                  <span className="sc-tools-tab-dot" title="Has custom content" aria-label="Custom" />
+                )}
+              </button>
+            )
+          })}
+        </div>
 
-            <div className="sc-sidebar-note">
-              <div className="sc-note-row">
-                <span className="sc-tool-dot" />
-                <span>Custom content (overrides default)</span>
-              </div>
-              <p>
-                Content lives in your browser only. Clearing site data or switching browsers will
-                reset everything to defaults.
-              </p>
-            </div>
-          </aside>
-
-          {/* === MAIN EDITOR === */}
-          <main className="sc-main">
-            <header className="sc-main-head">
-              <div className="sc-main-title">
-                <span className="sc-main-icon">{activeTool.icon}</span>
-                <div>
-                  <h2>{activeTool.label}</h2>
-                  <span className="sc-main-sub">
-                    {isOverridden ? (
-                      <>
-                        <span className="sc-badge sc-badge-custom">Custom content</span>
-                        Live on <Link to={activeTool.path}>{activeTool.path}</Link>
-                      </>
-                    ) : (
-                      <>
-                        <span className="sc-badge">Using defaults</span>
-                        Live on <Link to={activeTool.path}>{activeTool.path}</Link>
-                      </>
-                    )}
+        {/* === EDITOR CARD === */}
+        <main className="sc-editor-card">
+          <header className="sc-editor-head">
+            <div className="sc-editor-title">
+              <span className="sc-editor-icon">{activeTool.icon}</span>
+              <div>
+                <h2>{activeTool.label}</h2>
+                <div className="sc-editor-sub">
+                  {isOverridden ? (
+                    <span className="sc-badge sc-badge-custom">● Custom content</span>
+                  ) : (
+                    <span className="sc-badge">○ Using defaults</span>
+                  )}
+                  <span className="sc-sub-divider">·</span>
+                  <span className="sc-sub-meta">
+                    Live on <Link to={activeTool.path}>{activeTool.path}</Link>
                   </span>
                 </div>
               </div>
-              <div className="sc-main-actions">
-                <Link to={activeTool.path} target="_blank" rel="noreferrer" className="sc-btn-ghost">
-                  Preview tool ↗
-                </Link>
-                <button
-                  type="button"
-                  className="sc-btn-danger sc-btn-ghost"
-                  disabled={!isOverridden}
-                  onClick={() => setConfirmReset(activeTool.id)}
-                >
-                  Reset to default
-                </button>
-              </div>
-            </header>
+            </div>
+            <div className="sc-editor-actions">
+              <Link
+                to={activeTool.path}
+                target="_blank"
+                rel="noreferrer"
+                className="sc-btn-ghost"
+              >
+                Preview ↗
+              </Link>
+              <button
+                type="button"
+                className="sc-btn-danger sc-btn-ghost"
+                disabled={!isOverridden}
+                onClick={() => setConfirmReset(activeTool.id)}
+              >
+                Reset to default
+              </button>
+            </div>
+          </header>
 
-            <ActiveEditor
-              key={activeTool.id /* remount when tool changes */}
-              value={activeContent}
-              onChange={onSave}
-              defaults={activeTool.defaults()}
-            />
-          </main>
-        </div>
+          <ActiveEditor
+            key={activeTool.id /* remount when tool changes */}
+            value={activeContent}
+            onChange={onSave}
+            defaults={activeTool.defaults()}
+          />
+        </main>
 
         {/* === CONFIRM RESET MODAL === */}
         {confirmReset && (
           <div className="sc-modal-back" onClick={() => setConfirmReset(null)}>
-            <div className="sc-modal" onClick={(e) => e.stopPropagation()}>
+            <div
+              className="sc-modal"
+              role="dialog"
+              aria-modal="true"
+              onClick={(e) => e.stopPropagation()}
+            >
               <h3>
                 {confirmReset === 'all'
                   ? 'Reset content for all tools?'
                   : `Reset ${TOOLS.find((t) => t.id === confirmReset)?.label} to defaults?`}
               </h3>
               <p>
-                Your custom edits will be lost. This affects every visitor using this browser.
+                Your custom edits will be permanently lost. This affects every visitor using
+                this browser.
               </p>
               <div className="sc-modal-actions">
-                <button type="button" className="sc-btn-ghost" onClick={() => setConfirmReset(null)}>
+                <button
+                  type="button"
+                  className="sc-btn-ghost"
+                  onClick={() => setConfirmReset(null)}
+                >
                   Cancel
                 </button>
                 <button
