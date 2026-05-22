@@ -1,0 +1,194 @@
+/* ================================================================== */
+/*  CREATE GUIDE — page-specific styles                                */
+/* ================================================================== */
+
+/* ─── Cover picker ─── */
+.cs-home .cover-pick {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cs-home .cover-pick-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px 8px 8px;
+  background: #fff;
+  border: 1.5px solid var(--border);
+  border-radius: 999px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s, transform 0.15s;
+}
+.cs-home .cover-pick-item:hover {
+  border-color: #cbd5e1;
+  transform: translateY(-1px);
+}
+.cs-home .cover-pick-item.active {
+  border-color: var(--blue);
+  background: var(--blue-light);
+  color: var(--blue);
+}
+.cs-home .cover-swatch {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.1);
+}
+
+/* ─── Steps section ─── */
+.cs-home .steps-section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
+}
+.cs-home .add-step-btn {
+  background: linear-gradient(135deg, var(--blue), #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 18px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+.cs-home .add-step-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
+}
+
+.cs-home .steps-builder {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* ─── Individual step card (accordion) ─── */
+.cs-home .step-card {
+  background: #fafbff;
+  border: 1.5px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.cs-home .step-card.open {
+  border-color: var(--blue);
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.08);
+}
+
+.cs-home .step-card-head {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  user-select: none;
+  background: transparent;
+  transition: background 0.15s;
+}
+.cs-home .step-card-head:hover { background: rgba(99, 102, 241, 0.04); }
+.cs-home .step-card.open .step-card-head {
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+}
+
+.cs-home .step-card-num {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 900;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(59, 130, 246, 0.3);
+}
+
+.cs-home .step-card-titlebox {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.cs-home .step-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.cs-home .step-card-sub {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.cs-home .step-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.cs-home .step-card-actions button {
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.cs-home .step-card-actions button:hover:not(:disabled) {
+  background: var(--blue-light);
+  color: var(--blue);
+  border-color: var(--blue);
+}
+.cs-home .step-card-actions button:disabled { opacity: 0.4; cursor: not-allowed; }
+.cs-home .step-card-toggle {
+  margin-left: 4px;
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding: 0 6px;
+}
+
+.cs-home .step-card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-home .step-blocks {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* tighten nested block editors inside a step */
+.cs-home .step-card-body .block-editor {
+  background: #fff;
+  border: 1px solid var(--border);
+}
+.cs-home .step-card-body .add-block-bar {
+  padding-top: 6px;
+  border-top: 1px dashed var(--border);
+  margin-top: 4px;
+}

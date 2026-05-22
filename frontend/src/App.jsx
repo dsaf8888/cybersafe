@@ -5,6 +5,8 @@ import TermsAndConditions from './pages/legal/TermsAndConditions'
 import AboutUs from './pages/AboutUs'
 import FAQ from './pages/FAQ'
 import Guides from './pages/Guides'
+import GuideView from './pages/GuideView'
+import CreateGuide from './pages/CreateGuide'
 import SafetyTips from './pages/SafetyTips'
 import ReportIssue from './pages/ReportIssue'
 import HelpCenter from './pages/HelpCenter'
@@ -35,6 +37,8 @@ export default function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/guides" element={<Guides />} />
+        <Route path="/guides/create" element={<CreateGuide />} />
+        <Route path="/guides/:slug" element={<GuideView />} />
         <Route path="/safety-tips" element={<SafetyTips />} />
         <Route path="/report-issue" element={<ReportIssue />} />
         <Route path="/help" element={<HelpCenter />} />

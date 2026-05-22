@@ -337,7 +337,7 @@ export const GUIDES = [
             'browserleaks.com — detailed leak audit',
             'dnsleaktest.com — verify your DNS resolver',
           ] },
-          { type: 'callout', kind: 'tip', text: "If your fingerprint is highly unique, you\'re still trackable. Brave\'s shields or Firefox\'s resistFingerprinting setting fix this." },
+          { type: 'callout', kind: 'tip', text: "If your fingerprint is highly unique, you're still trackable. Brave's shields or Firefox's resistFingerprinting setting fix this." },
         ],
       },
     ],
@@ -372,7 +372,7 @@ export const GUIDES = [
         title: 'Update everything',
         time: '5 min',
         blocks: [
-          { type: 'p', text: "OS and app updates close most security holes. Don\'t delay them." },
+          { type: 'p', text: "OS and app updates close most security holes. Don't delay them." },
           { type: 'ul', items: [
             'Settings → General → Software Update (iOS)',
             'Settings → System → System update (Android)',
@@ -428,7 +428,7 @@ export const GUIDES = [
         title: 'Encrypt your backups',
         time: '3 min',
         blocks: [
-          { type: 'callout', kind: 'tip', title: 'The toggle most people miss', text: "iTunes/Finder backups aren\'t encrypted by default. Tick the \"Encrypt local backup\" box and set a strong password. This also unlocks backing up Health and Keychain data." },
+          { type: 'callout', kind: 'tip', title: 'The toggle most people miss', text: 'iTunes/Finder backups aren\'t encrypted by default. Tick the "Encrypt local backup" box and set a strong password. This also unlocks backing up Health and Keychain data.' },
         ],
       },
     ],

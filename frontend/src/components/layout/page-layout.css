@@ -786,3 +786,725 @@
   .cs-home .help-categories,
   .cs-home .stat-row { grid-template-columns: 1fr; }
 }
+
+/* ================================================================== */
+/*  GUIDE VIEW (single guide detail page)                              */
+/* ================================================================== */
+
+/* ─── Breadcrumb ─── */
+.cs-home .guide-breadcrumb {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px 32px 0;
+  font-size: 0.88rem;
+  color: var(--muted);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.cs-home .guide-breadcrumb a {
+  color: var(--blue);
+  font-weight: 600;
+  text-decoration: none;
+}
+.cs-home .guide-breadcrumb a:hover { text-decoration: underline; }
+.cs-home .guide-breadcrumb .bc-sep { opacity: 0.5; }
+.cs-home .guide-breadcrumb .bc-current { font-weight: 600; color: var(--text); }
+
+/* ─── Hero ─── */
+.cs-home .guide-hero {
+  margin: 16px 24px 0;
+  border-radius: 24px;
+  padding: 48px 40px 56px;
+  position: relative;
+  overflow: hidden;
+  max-width: 1200px;
+}
+.cs-home .guide-hero { margin-left: auto; margin-right: auto; }
+
+.cs-home .guide-cover-blue   { background: linear-gradient(135deg, #f1f5ff, #c7d2fe); }
+.cs-home .guide-cover-green  { background: linear-gradient(135deg, #ecfdf5, #86efac); }
+.cs-home .guide-cover-amber  { background: linear-gradient(135deg, #fff7ed, #fdba74); }
+.cs-home .guide-cover-purple { background: linear-gradient(135deg, #faf5ff, #d8b4fe); }
+.cs-home .guide-cover-rose   { background: linear-gradient(135deg, #fef2f2, #fda4af); }
+.cs-home .guide-cover-slate  { background: linear-gradient(135deg, #f1f5f9, #94a3b8); }
+
+.cs-home .guide-hero-inner {
+  max-width: 760px;
+  position: relative;
+  z-index: 1;
+}
+
+.cs-home .guide-hero-pills {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.cs-home .guide-level-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.cs-home .guide-hero-icon {
+  font-size: 3.5rem;
+  margin-bottom: 18px;
+  width: 84px;
+  height: 84px;
+  background: rgba(255, 255, 255, 0.6);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
+}
+
+.cs-home .guide-hero h1 {
+  font-size: clamp(1.75rem, 4vw, 2.6rem);
+  font-weight: 900;
+  letter-spacing: -0.025em;
+  line-height: 1.15;
+  margin: 0 0 16px;
+  color: var(--text);
+}
+.cs-home .guide-hero-desc {
+  font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+  color: #1e293b;
+  margin: 0 0 22px;
+  line-height: 1.55;
+  max-width: 640px;
+}
+
+.cs-home .guide-hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.86rem;
+  color: #475569;
+  font-weight: 500;
+}
+
+/* ─── Shell (sidebar + article) ─── */
+.cs-home .guide-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 48px 32px 80px;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: 48px;
+  align-items: flex-start;
+}
+
+/* ─── Sticky sidebar ─── */
+.cs-home .guide-sidebar {
+  position: sticky;
+  top: 96px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.cs-home .guide-progress-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 16px 18px;
+}
+.cs-home .guide-progress-head {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.84rem;
+  color: var(--muted);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+.cs-home .guide-progress-head strong {
+  color: var(--blue);
+  font-size: 1.05rem;
+}
+.cs-home .guide-progress-bar {
+  height: 8px;
+  background: #f1f5f9;
+  border-radius: 4px;
+  overflow: hidden;
+}
+.cs-home .guide-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #6366f1);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+.cs-home .guide-progress-sub {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-top: 10px;
+}
+
+/* TOC */
+.cs-home .guide-toc {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 18px;
+}
+.cs-home .guide-toc-label {
+  display: block;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+.cs-home .guide-toc ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.cs-home .guide-toc li button {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 10px;
+  background: transparent;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  color: var(--muted);
+  font-size: 0.88rem;
+  transition: background 0.2s, color 0.2s;
+}
+.cs-home .guide-toc li button:hover { background: #f8fafc; color: var(--text); }
+.cs-home .guide-toc-num {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, color 0.2s;
+}
+.cs-home .guide-toc-title {
+  font-weight: 500;
+  line-height: 1.35;
+}
+.cs-home .guide-toc li.active button {
+  background: var(--blue-light);
+  color: var(--blue);
+}
+.cs-home .guide-toc li.active .guide-toc-num {
+  background: var(--blue);
+  color: #fff;
+}
+.cs-home .guide-toc li.active .guide-toc-title { font-weight: 700; }
+.cs-home .guide-toc li.done .guide-toc-num {
+  background: #22c55e;
+  color: #fff;
+}
+.cs-home .guide-toc li.done button { color: #15803d; }
+
+/* Complete button */
+.cs-home .guide-complete-btn {
+  width: 100%;
+  padding: 13px 16px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 0.92rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 6px 18px rgba(59, 130, 246, 0.3);
+}
+.cs-home .guide-complete-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.35);
+}
+.cs-home .guide-complete-btn.done {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  box-shadow: 0 6px 18px rgba(34, 197, 94, 0.3);
+}
+
+/* ─── Article ─── */
+.cs-home .guide-article { min-width: 0; }
+
+/* Info cards (what you'll learn + prereqs) */
+.cs-home .guide-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 44px;
+}
+.cs-home .guide-info-card {
+  background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+  border: 1px solid #bae6fd;
+  border-radius: 16px;
+  padding: 22px 24px;
+}
+.cs-home .guide-info-card-prereq {
+  background: linear-gradient(135deg, #fefce8, #fef9c3);
+  border-color: #fde68a;
+}
+.cs-home .guide-info-card header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+.cs-home .guide-info-card header span { font-size: 1.4rem; }
+.cs-home .guide-info-card h2 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.01em;
+  color: #0c4a6e;
+}
+.cs-home .guide-info-card-prereq h2 { color: #713f12; }
+.cs-home .guide-info-card ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.cs-home .guide-info-card li {
+  position: relative;
+  padding-left: 22px;
+  font-size: 0.92rem;
+  line-height: 1.5;
+  color: #1e293b;
+}
+.cs-home .guide-info-card li::before {
+  content: '✓';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-weight: 800;
+  color: #0284c7;
+}
+.cs-home .guide-info-card-prereq li::before {
+  content: '▸';
+  color: #a16207;
+}
+
+/* Step timeline */
+.cs-home .guide-steps {
+  position: relative;
+  padding-left: 30px;
+  margin-bottom: 56px;
+}
+.cs-home .guide-steps::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  top: 18px;
+  bottom: 18px;
+  width: 2px;
+  background: linear-gradient(180deg, var(--blue), #cbd5e1 80%);
+  border-radius: 2px;
+}
+
+.cs-home .guide-step {
+  position: relative;
+  margin-bottom: 40px;
+  scroll-margin-top: 96px;
+}
+.cs-home .guide-step:last-child { margin-bottom: 0; }
+
+.cs-home .guide-step-head {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  margin-bottom: 16px;
+  margin-left: -30px;
+}
+.cs-home .guide-step-num {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: #fff;
+  font-weight: 900;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  margin-top: 4px;
+  z-index: 1;
+  position: relative;
+}
+.cs-home .guide-step-time {
+  display: inline-block;
+  background: #f1f5f9;
+  color: var(--muted);
+  font-size: 0.74rem;
+  font-weight: 700;
+  padding: 3px 10px;
+  border-radius: 999px;
+  margin-bottom: 6px;
+}
+.cs-home .guide-step-head h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  color: var(--text);
+}
+
+.cs-home .guide-step-body {
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: #1e293b;
+}
+.cs-home .guide-step-body p { margin: 0 0 14px; }
+.cs-home .guide-step-body h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  margin: 24px 0 10px;
+  letter-spacing: -0.01em;
+}
+.cs-home .guide-step-body ul,
+.cs-home .guide-step-body ol {
+  margin: 0 0 16px;
+  padding-left: 22px;
+}
+.cs-home .guide-step-body li { margin-bottom: 6px; }
+.cs-home .guide-step-body ol { counter-reset: gn; list-style: none; padding-left: 0; }
+.cs-home .guide-step-body ol > li {
+  counter-increment: gn;
+  position: relative;
+  padding-left: 32px;
+  margin-bottom: 10px;
+}
+.cs-home .guide-step-body ol > li::before {
+  content: counter(gn);
+  position: absolute;
+  left: 0;
+  top: 1px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-weight: 800;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Callouts inside steps */
+.cs-home .guide-callout {
+  margin: 16px 0;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border-left: 4px solid;
+}
+.cs-home .guide-callout p { margin: 0; font-size: 0.94rem; line-height: 1.55; }
+.cs-home .guide-callout-title {
+  display: block;
+  font-weight: 800;
+  font-size: 0.86rem;
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.cs-home .guide-callout-tip {
+  background: #f0fdf4;
+  border-color: #22c55e;
+  color: #14532d;
+}
+.cs-home .guide-callout-warn {
+  background: #fef2f2;
+  border-color: #ef4444;
+  color: #7f1d1d;
+}
+.cs-home .guide-callout-info {
+  background: #f0f9ff;
+  border-color: #3b82f6;
+  color: #0c4a6e;
+}
+
+/* Code blocks */
+.cs-home .guide-code {
+  background: #0f172a;
+  color: #e2e8f0;
+  border-radius: 12px;
+  margin: 16px 0;
+  overflow: hidden;
+  position: relative;
+}
+.cs-home .guide-code-lang {
+  display: inline-block;
+  background: #1e293b;
+  color: #94a3b8;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 4px 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  border-bottom-right-radius: 8px;
+}
+.cs-home .guide-code pre {
+  margin: 0;
+  padding: 16px 18px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.86rem;
+  line-height: 1.6;
+  overflow-x: auto;
+}
+.cs-home .guide-code code { background: transparent; padding: 0; color: inherit; }
+
+/* ─── Finish banner ─── */
+.cs-home .guide-finish {
+  background: linear-gradient(135deg, #fffbeb, #fef3c7);
+  border: 1.5px solid #fde68a;
+  border-radius: 18px;
+  padding: 32px;
+  text-align: center;
+  margin-bottom: 48px;
+}
+.cs-home .guide-finish.done {
+  background: linear-gradient(135deg, #f0fdf4, #dcfce7);
+  border-color: #86efac;
+}
+.cs-home .guide-finish-emoji {
+  font-size: 2.6rem;
+  margin-bottom: 12px;
+}
+.cs-home .guide-finish h2 {
+  font-size: 1.4rem;
+  font-weight: 800;
+  margin: 0 0 8px;
+  letter-spacing: -0.015em;
+  color: #78350f;
+}
+.cs-home .guide-finish.done h2 { color: #14532d; }
+.cs-home .guide-finish p {
+  margin: 0 0 20px;
+  color: #4b5563;
+  font-size: 0.96rem;
+}
+.cs-home .guide-finish-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ─── Related guides ─── */
+.cs-home .guide-related { margin-bottom: 48px; }
+.cs-home .guide-related > header { margin-bottom: 16px; }
+.cs-home .guide-related h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0 0 4px;
+  letter-spacing: -0.015em;
+}
+.cs-home .guide-related > header p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.cs-home .guide-related-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
+}
+.cs-home .guide-related-card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+}
+.cs-home .guide-related-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(15, 23, 42, 0.08);
+  border-color: #cbd5e1;
+}
+.cs-home .guide-related-cover {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+}
+.cs-home .guide-related-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.cs-home .guide-related-body h3 {
+  font-size: 0.96rem;
+  font-weight: 700;
+  margin: 4px 0 2px;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+.cs-home .guide-related-meta {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+/* ─── Pager ─── */
+.cs-home .guide-pager {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.cs-home .guide-pager-btn {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  cursor: pointer;
+  font-family: inherit;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+}
+.cs-home .guide-pager-btn:hover {
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+}
+.cs-home .guide-pager-btn span {
+  font-size: 0.78rem;
+  color: var(--muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+.cs-home .guide-pager-btn strong {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.4;
+}
+.cs-home .guide-pager-next { text-align: right; align-items: flex-end; }
+
+/* ─── Responsive ─── */
+@media (max-width: 960px) {
+  .cs-home .guide-shell {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding: 32px 24px 64px;
+  }
+  .cs-home .guide-sidebar {
+    position: static;
+    top: auto;
+    flex-direction: column;
+  }
+  .cs-home .guide-info-grid { grid-template-columns: 1fr; }
+  .cs-home .guide-hero { padding: 36px 28px 44px; }
+  .cs-home .guide-pager { grid-template-columns: 1fr; }
+  .cs-home .guide-pager-next { text-align: left; align-items: flex-start; }
+}
+
+@media (max-width: 600px) {
+  .cs-home .guide-hero { margin: 16px 16px 0; padding: 28px 22px 36px; border-radius: 18px; }
+  .cs-home .guide-shell { padding: 24px 16px 56px; }
+  .cs-home .guide-hero-meta { font-size: 0.78rem; gap: 6px; }
+  .cs-home .guide-steps { padding-left: 22px; }
+  .cs-home .guide-step-head { gap: 12px; margin-left: -22px; }
+  .cs-home .guide-step-num { width: 32px; height: 32px; font-size: 0.9rem; }
+}
+
+/* ================================================================== */
+/*  GUIDES LISTING TOOLBAR + USER-GUIDE INDICATORS                     */
+/* ================================================================== */
+
+.cs-home .guides-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  flex-wrap: wrap;
+}
+
+.cs-home .btn-create-guide {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, var(--blue), #6366f1);
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: transform 0.15s, box-shadow 0.2s;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+  white-space: nowrap;
+}
+.cs-home .btn-create-guide:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(59, 130, 246, 0.4);
+}
+
+.cs-home .resource-tag-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 4px;
+}
+
+.cs-home .resource-tag.user-tag {
+  background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+  color: #5b21b6;
+}
+
+.cs-home .guide-delete-btn {
+  margin-top: 4px;
+  width: 100%;
+  padding: 10px 14px;
+  background: transparent;
+  color: #ef4444;
+  border: 1.5px solid #fecaca;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.86rem;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cs-home .guide-delete-btn:hover {
+  background: #fef2f2;
+  border-color: #ef4444;
+}
