@@ -2957,3 +2957,140 @@
   .cs-home .lh-strategy { width: 100%; justify-content: center; }
   .cs-home .lh-strategy-btn { flex: 1; }
 }
+
+/* ===== TOOLS — extended responsive overhaul ===== */
+
+/* Wider-than-mobile but still constrained desktops */
+@media (max-width: 1280px) {
+  .cs-home .tool-hero { padding: 56px 40px 64px; }
+  .cs-home .tool-body { padding: 48px 40px 64px; }
+}
+
+/* Tablet & below */
+@media (max-width: 880px) {
+  .cs-home .tool-hero { padding: 40px 24px 48px; }
+  .cs-home .tool-body { padding: 36px 24px 56px; }
+
+  .cs-home .tool-hero h1 { font-size: clamp(1.5rem, 5vw, 2rem); }
+
+  /* Multi-col data grids collapse */
+  .cs-home .breach-quick-stats { grid-template-columns: repeat(3, 1fr); }
+  .cs-home .lh-meta-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .cs-home .lh-two-col      { grid-template-columns: 1fr; }
+  .cs-home .tool-section-head > div[style] { flex-direction: column; align-items: flex-start !important; }
+
+  /* Pw tip grid */
+  .cs-home .pw-tips-grid    { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* Small tablet / large phone */
+@media (max-width: 720px) {
+  .cs-home .tool-hero { padding: 32px 20px 40px; }
+  .cs-home .tool-body { padding: 28px 20px 48px; }
+
+  .cs-home .tool-hero-tag { font-size: 0.75rem; }
+  .cs-home .tool-hero p   { font-size: 0.92rem; }
+
+  .cs-home .tool-hero-card { padding: 22px; }
+  .cs-home .score-stack    { flex-direction: column; align-items: center; text-align: center; }
+
+  /* Network test / URL scanner — target bar */
+  .cs-home .target-bar    { flex-direction: column; align-items: stretch; gap: 10px; }
+  .cs-home .target-input  { width: 100%; }
+  .cs-home .target-bar .btn-run { width: 100%; }
+
+  /* Score breakdown stays one column */
+  .cs-home .score-breakdown { grid-template-columns: 1fr; }
+
+  /* Password meter & strength dots */
+  .cs-home .pw-meter        { gap: 3px; }
+
+  /* Recommended card */
+  .cs-home .rec-card        { grid-template-columns: 40px 1fr; padding: 14px; gap: 10px; }
+  .cs-home .rec-action {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    text-align: center;
+    margin-top: 4px;
+  }
+
+  /* Breach */
+  .cs-home .breach-quick-stats { grid-template-columns: 1fr 1fr 1fr; gap: 4px; }
+  .cs-home .breach-quick-stats strong { font-size: 1.1rem; }
+
+  /* WiFi / Social platform pick */
+  .cs-home .platform-pick   { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cs-home .platform-card   { padding: 16px 12px; }
+
+  /* Survey */
+  .cs-home .survey-category { padding: 16px; }
+  .cs-home .survey-cat-head { flex-wrap: wrap; gap: 8px; }
+  .cs-home .survey-question { padding: 12px; }
+  .cs-home .survey-options  { flex-direction: column; align-items: stretch; gap: 6px; }
+  .cs-home .survey-option   { width: 100%; }
+
+  /* Quiz */
+  .cs-home .quiz-stage      { padding: 20px 16px; }
+  .cs-home .quiz-email,
+  .cs-home .quiz-sms,
+  .cs-home .quiz-url        { padding: 16px; }
+  .cs-home .quiz-email-head { gap: 6px; }
+  .cs-home .quiz-email-row  { grid-template-columns: 56px 1fr; font-size: 0.85rem; }
+  .cs-home .quiz-answers    { grid-template-columns: 1fr; }
+  .cs-home .quiz-btn        { padding: 14px; }
+  .cs-home .quiz-flags-list { flex-direction: column; align-items: stretch; }
+
+  /* Scam analyzer */
+  .cs-home .msg-input-footer { flex-direction: column; align-items: stretch; gap: 8px; }
+  .cs-home .msg-input-actions { flex-wrap: wrap; }
+  .cs-home .msg-analysis-grid { grid-template-columns: 1fr; }
+  .cs-home .msg-score-card   { position: static; }
+
+  /* File safety */
+  .cs-home .drop-zone        { padding: 24px 16px; min-height: 160px; }
+  .cs-home .file-card        { padding: 14px; }
+  .cs-home .file-hash-actions { flex-direction: column; }
+  .cs-home .file-hash-btn    { width: 100%; }
+
+  /* Lighthouse / Website performance */
+  .cs-home .lh-score-grid    { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .cs-home .lh-vitals-grid   { grid-template-columns: 1fr; }
+
+  /* CTA row */
+  .cs-home .tool-cta-row     { flex-direction: column; align-items: stretch; text-align: center; padding: 22px; }
+  .cs-home .tool-cta-row > div + div { flex-direction: column; }
+  .cs-home .tool-cta-row .btn-submit,
+  .cs-home .tool-cta-row .btn-secondary { width: 100%; text-align: center; justify-content: center; }
+
+  /* Verdict banner */
+  .cs-home .verdict-banner   { grid-template-columns: 1fr; text-align: center; padding: 22px; }
+  .cs-home .verdict-icon     { margin: 0 auto; }
+  .cs-home .verdict-stats    { justify-content: center; flex-wrap: wrap; }
+
+  /* WiFi context banner */
+  .cs-home .wifi-context-banner { flex-wrap: wrap; }
+  .cs-home .wifi-context-change { margin-left: auto; }
+
+  /* Social privacy: action buttons stack */
+  .cs-home .social-item       { grid-template-columns: 1fr; gap: 10px; }
+  .cs-home .social-item-actions { display: flex; gap: 6px; }
+  .cs-home .social-btn        { flex: 1; padding: 10px 8px; font-size: 0.82rem; }
+
+  /* Pw tips */
+  .cs-home .pw-tips-grid      { grid-template-columns: 1fr; }
+}
+
+/* Phone polish */
+@media (max-width: 480px) {
+  .cs-home .tool-hero { padding: 28px 16px 36px; }
+  .cs-home .tool-body { padding: 24px 16px 40px; }
+  .cs-home .lh-score-grid { grid-template-columns: 1fr; }
+  .cs-home .platform-pick { grid-template-columns: 1fr; }
+  .cs-home .breach-quick-stats { grid-template-columns: 1fr; gap: 6px; }
+  .cs-home .browser-banner    { flex-direction: column; align-items: stretch; text-align: center; }
+}
+

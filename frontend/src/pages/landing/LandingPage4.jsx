@@ -1,7 +1,16 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CyberSafeLogo } from '../../components/landing/CyberSafeLogo'
+import SiteNav from '../../components/layout/SiteNav'
 import './cybershield.css'
+
+const LANDING_NAV_LINKS = [
+  { to: '#top',    label: 'Home' },
+  { to: '#tools',  label: 'Tools' },
+  { to: '/blog',   label: 'Blog' },
+  { to: '/help',   label: 'Dashboard' },
+  { to: '/about',  label: 'About Us' },
+]
 
 function ScoreCard() {
   return (
@@ -126,23 +135,7 @@ export default function LandingPage4() {
 
   return (
     <div className="cs-home">
-      <nav>
-        <Link to="/" className="nav-brand">
-          <CyberSafeLogo />
-          Cyber<span>Safe</span>
-        </Link>
-        <ul className="nav-links">
-          <li><a href="#top" className="active">Home</a></li>
-          <li><a href="#tools">Tools</a></li>
-          <li><Link to="/blog">Blog</Link></li>
-          <li><Link to="/help">Dashboard</Link></li>
-          <li><Link to="/about">About Us</Link></li>
-        </ul>
-        <div className="nav-actions">
-          <button type="button" className="btn-ghost">Log In</button>
-          <button type="button" className="btn-blue">Get Started</button>
-        </div>
-      </nav>
+      <SiteNav links={LANDING_NAV_LINKS} activePath="#top" />
 
       <section id="top" className="hero">
         <div className="hero-left">

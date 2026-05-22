@@ -30,7 +30,18 @@
   overflow-x: hidden;
 }
 
-/* NAV */
+/* NAV — fixed across the top on every screen.
+   IMPORTANT: do NOT add `backdrop-filter`, `transform`, `perspective`,
+   `filter`, or `will-change: transform` to this element. Any of those
+   would create a new containing block, which would re-anchor
+   `position: fixed` descendants (e.g. the mobile drawer) inside the
+   64px nav instead of the viewport.
+
+   Layering when the mobile drawer is open:
+     nav      (this element)      z 1100  ← stays clickable
+       └ drawer (descendant)      z 1110  ← above backdrop
+       └ toggle (descendant)      z 1120  ← above drawer (X stays clickable)
+     backdrop (sibling of nav)    z 1090  ← dims the rest of the page */
 .cs-home nav {
   display: flex;
   align-items: center;
@@ -39,9 +50,16 @@
   height: 64px;
   background: var(--white);
   border-bottom: 1px solid var(--border);
-  position: sticky;
+  position: fixed;
   top: 0;
-  z-index: 100;
+  left: 0;
+  right: 0;
+  z-index: 1100;
+  transition: box-shadow 0.25s ease;
+}
+/* Subtle elevation once the page scrolls past the top */
+.cs-home nav.is-scrolled {
+  box-shadow: 0 4px 18px -8px rgba(15, 23, 42, 0.18);
 }
 
 .cs-home .nav-brand {
@@ -52,15 +70,29 @@
   font-size: 1.1rem;
   color: var(--text);
   text-decoration: none;
+  flex-shrink: 0;
 }
 
 .cs-home .nav-brand svg { color: var(--blue); }
 .cs-home .nav-brand span { color: var(--blue); }
 
+/* Desktop drawer is a single flex row holding links + auth actions */
+.cs-home .nav-drawer {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  flex: 1;
+  justify-content: flex-end;
+  margin: 0;
+  padding: 0;
+}
+
 .cs-home .nav-links {
   display: flex;
   gap: 32px;
   list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
 .cs-home .nav-links a {
@@ -84,7 +116,9 @@
 .cs-home .nav-actions {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
 }
 
 .cs-home .btn-ghost {
@@ -1235,3 +1269,255 @@
     flex: 1 1 100%;
   }
 }
+
+/* =====================================================================
+   MOBILE NAV — hamburger + slide-in drawer
+   ===================================================================== */
+
+.cs-home .nav-toggle {
+  display: none;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  z-index: 1120;
+  transition: background 0.2s, border-color 0.2s;
+}
+.cs-home .nav-toggle:hover {
+  background: #f8fafc;
+  border-color: var(--blue);
+}
+.cs-home .nav-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+  transform-origin: center;
+}
+.cs-home .nav-toggle.open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.cs-home .nav-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+.cs-home .nav-toggle.open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+.cs-home .nav-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.45);
+  z-index: 1090;
+  animation: navFadeIn 0.2s ease;
+}
+@keyframes navFadeIn { from { opacity: 0 } to { opacity: 1 } }
+
+/* =====================================================================
+   GLOBAL RESPONSIVE — landing-page sections
+   Breakpoints (mobile-first overrides):
+     ≤1280  large desktop
+     ≤1080  small desktop / large tablet landscape
+     ≤ 880  tablet -> mobile nav kicks in here
+     ≤ 720  small tablet / large phone
+     ≤ 560  phone
+     ≤ 400  small phone
+   ===================================================================== */
+
+/* ===== ≤1280: tighten desktop padding ===== */
+@media (max-width: 1280px) {
+  .cs-home nav            { padding: 0 40px; }
+  .cs-home .hero          { padding: 56px 40px; }
+  .cs-home .features,
+  .cs-home .tools,
+  .cs-home .blog,
+  .cs-home .how,
+  .cs-home .cta-section   { padding-left: 40px; padding-right: 40px; }
+  .cs-home footer         { padding-left: 40px; padding-right: 40px; }
+  .cs-home .features-grid { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+}
+
+/* ===== ≤1080: stack hero, simplify trust bar ===== */
+@media (max-width: 1080px) {
+  .cs-home .hero {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 48px 32px;
+  }
+  .cs-home .hero-left p   { max-width: none; }
+  .cs-home .score-card    { max-width: 520px; margin: 0 auto; width: 100%; }
+  .cs-home .trust-bar     { grid-template-columns: repeat(2, 1fr); }
+  .cs-home .cta-section   { grid-template-columns: 1fr; gap: 28px; }
+  .cs-home .footer-grid   { grid-template-columns: 1.5fr 1fr 1fr 1fr; }
+  .cs-home .footer-grid > div:last-child { grid-column: span 2; }
+}
+
+/* ===== ≤880: hamburger appears + collapse rest ===== */
+@media (max-width: 880px) {
+  .cs-home nav { padding: 0 20px; gap: 12px; }
+
+  .cs-home .nav-toggle { display: flex; }
+
+  .cs-home .nav-drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(340px, 88vw);
+    background: var(--white);
+    padding: 80px 28px 32px;
+    box-shadow: -8px 0 32px -8px rgba(0, 0, 0, 0.18);
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 24px;
+    overflow-y: auto;
+    z-index: 1110;
+    transform: translateX(100%);
+    transition: transform 0.32s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: initial;
+    margin: 0;
+  }
+  .cs-home .nav-drawer.open { transform: translateX(0); }
+
+  .cs-home .nav-drawer .nav-links {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 4px;
+  }
+  .cs-home .nav-drawer .nav-links li { width: 100%; }
+  .cs-home .nav-drawer .nav-links a {
+    display: block;
+    padding: 14px 16px;
+    border-radius: 10px;
+    font-size: 1rem;
+    color: var(--text);
+    transition: background 0.15s, color 0.15s;
+  }
+  .cs-home .nav-drawer .nav-links a:hover {
+    background: #f1f5f9;
+    color: var(--blue);
+  }
+  .cs-home .nav-drawer .nav-links a.active {
+    background: var(--blue);
+    color: #fff;
+    border: 0;
+    padding-bottom: 14px;
+  }
+
+  .cs-home .nav-drawer .nav-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: auto;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+  }
+  .cs-home .nav-drawer .btn-ghost {
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    text-align: center;
+  }
+  .cs-home .nav-drawer .btn-blue {
+    padding: 12px;
+    width: 100%;
+  }
+}
+
+/* ===== ≤720: tighter sections, single-col features ===== */
+@media (max-width: 720px) {
+  .cs-home nav { padding: 0 16px; height: 60px; }
+
+  .cs-home .hero {
+    padding: 36px 20px;
+    gap: 28px;
+  }
+  .cs-home .hero-left h1 { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+  .cs-home .hero-btns    { flex-direction: column; align-items: stretch; }
+  .cs-home .btn-hero-primary,
+  .cs-home .btn-hero-outline { width: 100%; justify-content: center; }
+
+  .cs-home .trust-bar {
+    grid-template-columns: 1fr;
+    margin: 0 20px;
+    padding: 18px;
+  }
+
+  .cs-home .features,
+  .cs-home .tools,
+  .cs-home .blog,
+  .cs-home .how,
+  .cs-home .cta-section {
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 56px;
+    padding-bottom: 56px;
+  }
+
+  .cs-home .section-title { font-size: 1.4rem; }
+  .cs-home .section-sub   { font-size: 0.92rem; }
+
+  .cs-home .features-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .cs-home .tools-grid    { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; }
+
+  .cs-home .blog-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+  .cs-home .btn-view-all { align-self: stretch; text-align: center; }
+  .cs-home .blog-tabs    { width: 100%; overflow-x: auto; flex-wrap: nowrap; }
+  .cs-home .blog-tab     { flex: 0 0 auto; }
+
+  .cs-home .form-row     { grid-template-columns: 1fr; gap: 12px; }
+  .cs-home .email-row    { flex-direction: column; align-items: stretch; gap: 10px; }
+  .cs-home .email-input  { width: 100%; }
+  .cs-home .btn-subscribe,
+  .cs-home .btn-send     { width: 100%; }
+
+  .cs-home .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    padding-left: 0;
+    padding-right: 0;
+    gap: 28px;
+  }
+  .cs-home .footer-grid > div:first-child  { grid-column: span 2; }
+  .cs-home .footer-grid > div:last-child   { grid-column: span 2; }
+
+  .cs-home .score-header { grid-template-columns: 1fr; }
+  .cs-home .score-gauge-wrap { padding: 12px 0 4px; }
+  .cs-home .alert-bar    { flex-direction: column; align-items: flex-start; }
+}
+
+/* ===== ≤560: phone polish ===== */
+@media (max-width: 560px) {
+  .cs-home .hero-left h1 { font-size: 1.7rem; }
+  .cs-home .hero-left p  { font-size: 0.95rem; }
+  .cs-home .features-grid { grid-template-columns: 1fr; }
+  .cs-home .tools-grid    { grid-template-columns: 1fr; }
+  .cs-home .score-card    { padding: 20px; }
+  .cs-home .footer-grid   { grid-template-columns: 1fr; gap: 24px; }
+  .cs-home .footer-grid > div:first-child,
+  .cs-home .footer-grid > div:last-child { grid-column: auto; }
+}
+
+/* ===== ≤400: ultra-tight ===== */
+@media (max-width: 400px) {
+  .cs-home nav .nav-brand { font-size: 1rem; }
+  .cs-home .hero          { padding: 28px 16px; }
+  .cs-home .section-title { font-size: 1.25rem; }
+}
+

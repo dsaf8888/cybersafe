@@ -1,6 +1,7 @@
-import { Link, NavLink, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { CyberSafeLogo } from '../landing/CyberSafeLogo'
+import SiteNav from './SiteNav'
 import '../../pages/landing/cybershield.css'
 import './page-layout.css'
 
@@ -26,42 +27,7 @@ export default function PageLayout({ children, activePath, noFooter = false, fil
 
   return (
     <div className={`cs-home cs-page ${fillViewport ? 'cs-page-fill' : ''}`}>
-      <nav>
-        <Link to="/" className="nav-brand">
-          <CyberSafeLogo />
-          Cyber<span>Safe</span>
-        </Link>
-        <ul className="nav-links">
-          {NAV_LINKS.map((link) => {
-            const isActive =
-              (activePath && activePath === link.to) ||
-              (!activePath && location.pathname === link.to && !location.hash)
-            return (
-              <li key={link.to}>
-                {link.to.startsWith('/#') ? (
-                  <Link to={link.to} className={isActive ? 'active' : ''}>
-                    {link.label}
-                  </Link>
-                ) : (
-                  <NavLink
-                    to={link.to}
-                    end={link.end}
-                    className={({ isActive: routerActive }) =>
-                      routerActive || isActive ? 'active' : ''
-                    }
-                  >
-                    {link.label}
-                  </NavLink>
-                )}
-              </li>
-            )
-          })}
-        </ul>
-        <div className="nav-actions">
-          <button type="button" className="btn-ghost">Log In</button>
-          <button type="button" className="btn-blue">Get Started</button>
-        </div>
-      </nav>
+      <SiteNav links={NAV_LINKS} activePath={activePath} />
 
       {children}
 

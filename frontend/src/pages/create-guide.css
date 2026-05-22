@@ -192,3 +192,23 @@
   border-top: 1px dashed var(--border);
   margin-top: 4px;
 }
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 720px) {
+  .cs-home .steps-section-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cs-home .add-step-btn       { width: 100%; }
+  .cs-home .step-card-head     { padding: 12px 14px; gap: 10px; }
+  .cs-home .step-card-num      { width: 30px; height: 30px; font-size: 0.85rem; }
+  .cs-home .step-card-body     { padding: 14px; }
+  .cs-home .step-card-actions  { flex-wrap: wrap; }
+  .cs-home .cover-pick         { gap: 8px; }
+  .cs-home .cover-pick-item    { flex: 1 1 calc(50% - 4px); justify-content: center; }
+}
+
+@media (max-width: 400px) {
+  .cs-home .step-card-title    { font-size: 0.92rem; }
+  .cs-home .cover-pick-item    { flex: 1 1 100%; }
+}

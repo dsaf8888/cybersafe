@@ -1,10 +1,60 @@
+/* ============================================================
+   Global responsive base
+   ============================================================ */
+
 *, *::before, *::after { box-sizing: border-box; }
+
+html {
+  /* Smooth scroll for in-page anchor jumps */
+  scroll-behavior: smooth;
+  /* Adjust scroll position for sticky header */
+  scroll-padding-top: 72px;
+  /* Prevent iOS text-size adjust quirks */
+  -webkit-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
 
 body {
   margin: 0;
   min-width: 320px;
+  /* Push all page content below the 64px fixed site header. */
+  padding-top: 64px;
+  /* Prevent horizontal scroll caused by overflow children.
+     `clip` (vs. `hidden`) does NOT establish a scroll container,
+     so it doesn't break sticky/fixed descendants in WebKit. */
+  overflow-x: hidden;
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {
   min-height: 100vh;
+}
+
+/* Stop images/embeds/videos from blowing out their containers */
+img, svg, video, canvas, iframe, embed, object {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Stop wide tables/pre blocks from causing page overflow */
+pre, code, kbd, samp {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+pre { overflow-x: auto; }
+
+table { max-width: 100%; }
+
+/* Prevent iOS auto-zoom on form fields by forcing >= 16px */
+@media (max-width: 720px) {
+  input:not([type='checkbox']):not([type='radio']),
+  textarea,
+  select {
+    font-size: 16px;
+  }
 }

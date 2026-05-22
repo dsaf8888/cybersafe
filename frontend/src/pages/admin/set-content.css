@@ -759,3 +759,82 @@
   from { opacity: 0; transform: translateY(8px) scale(0.97); }
   to   { opacity: 1; transform: translateY(0)    scale(1);    }
 }
+
+/* =====================================================================
+   RESPONSIVE — extended overhaul for ≤960 / ≤720 / ≤480
+   ===================================================================== */
+
+@media (max-width: 960px) {
+  .sc-page { padding: 24px 20px 64px; }
+
+  /* Sidebar becomes a horizontal scrolling tab strip on top */
+  .sc-sidebar {
+    position: static;
+    padding: 10px;
+  }
+  .sc-sidebar-label { padding: 2px 6px 8px; }
+  .sc-tool-list {
+    flex-direction: row;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    gap: 6px;
+    padding-bottom: 4px;
+    margin: 0 -4px;
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+  .sc-tool-btn {
+    flex: 0 0 auto;
+    padding: 8px 12px;
+  }
+  .sc-tool-meta strong { font-size: 0.82rem; }
+  .sc-tool-meta span   { display: none; }
+  .sc-sidebar-note     { display: none; }
+
+  /* Main editor pane */
+  .sc-main-head { padding: 16px 18px; gap: 12px; }
+  .sc-main-title h2 { font-size: 1.05rem; }
+  .sc-editor    { padding: 16px; gap: 16px; }
+  .sc-section   { padding: 14px; }
+  .sc-section-head { flex-direction: column; align-items: stretch; }
+}
+
+@media (max-width: 720px) {
+  .sc-page-head {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .sc-page-head h1 { font-size: 1.4rem; }
+  .sc-page-actions { flex-direction: column; }
+  .sc-page-actions > * { width: 100%; justify-content: center; text-align: center; }
+
+  /* Main pane head */
+  .sc-main-head { flex-direction: column; align-items: stretch; }
+  .sc-main-actions { flex-direction: column; gap: 6px; }
+  .sc-main-actions > * { width: 100%; justify-content: center; text-align: center; }
+
+  /* Item card head — wrap actions below title */
+  .sc-item-head { flex-wrap: wrap; gap: 6px; }
+  .sc-item-actions { margin-left: auto; }
+
+  /* Tables become horizontally scrollable to keep all columns readable */
+  .sc-sub-section { overflow-x: auto; }
+  .sc-table       { min-width: 480px; }
+
+  /* Modal sits tight to viewport */
+  .sc-modal { padding: 20px; border-radius: 12px; }
+  .sc-modal-actions { flex-direction: column-reverse; }
+  .sc-modal-actions > * { width: 100%; justify-content: center; text-align: center; }
+}
+
+@media (max-width: 480px) {
+  .sc-page { padding: 20px 14px 56px; }
+  .sc-eyebrow { font-size: 0.72rem; }
+  .sc-page-head p { font-size: 0.85rem; }
+  .sc-tab-strip { overflow-x: auto; flex-wrap: nowrap; -webkit-overflow-scrolling: touch; }
+  .sc-tab { flex: 0 0 auto; }
+  .sc-flag-row { grid-template-columns: 1fr auto; }
+  .sc-flag-row > button:nth-of-type(1),
+  .sc-flag-row > button:nth-of-type(2) { display: none; /* hide reorder on phone */ }
+}

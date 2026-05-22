@@ -5,7 +5,9 @@
 
 .cs-home.cs-page {
   background: var(--white);
-  min-height: 100vh;
+  /* body already has 64px padding-top for the fixed nav, so we can
+     take the full remaining viewport without double-counting. */
+  min-height: calc(100vh - 64px);
   display: flex;
   flex-direction: column;
 }
@@ -16,14 +18,14 @@
 
 /* Fill-viewport mode: page itself never scrolls; children manage their own scroll */
 .cs-home.cs-page-fill {
-  height: 100vh;
+  height: calc(100vh - 64px);
   min-height: 0;
   overflow: hidden;
 }
 
 .cs-home.cs-page-fill > nav + * {
   min-height: 0;
-  height: calc(100vh - 64px); /* nav height = 64px */
+  height: calc(100vh - 64px);
   overflow: hidden;
 }
 
@@ -764,9 +766,18 @@
 .cs-home .legal-toc a:hover { text-decoration: underline; }
 
 /* RESPONSIVE ------------------------------------------------- */
+@media (max-width: 1280px) {
+  .cs-home .page-hero,
+  .cs-home .page-body { padding-left: 40px; padding-right: 40px; }
+  .cs-home .doc-meta  { padding-left: 0; padding-right: 0; }
+}
+
 @media (max-width: 960px) {
-  .cs-home .page-hero { padding: 56px 24px 48px; }
-  .cs-home .page-body { padding: 40px 24px 64px; }
+  .cs-home .page-hero {
+    padding: 48px 24px 40px;
+  }
+  .cs-home .page-hero-title { font-size: clamp(1.5rem, 4vw, 2rem); }
+  .cs-home .page-body { padding: 36px 24px 64px; }
   .cs-home .about-grid,
   .cs-home .team-grid,
   .cs-home .resource-grid,
@@ -777,6 +788,42 @@
   .cs-home .tip-list,
   .cs-home .help-articles { grid-template-columns: 1fr; }
   .cs-home .legal-toc ol { grid-template-columns: 1fr; }
+  .cs-home .doc-meta { flex-wrap: wrap; gap: 10px; }
+}
+
+@media (max-width: 720px) {
+  .cs-home .page-hero {
+    padding: 36px 20px 32px;
+  }
+  .cs-home .page-hero-title  { font-size: clamp(1.3rem, 5vw, 1.7rem); line-height: 1.25; }
+  .cs-home .page-hero-subtitle { font-size: 0.95rem; }
+  .cs-home .page-body { padding: 28px 20px 56px; }
+  .cs-home .doc-callout { padding: 16px; }
+
+  .cs-home .faq-tabs {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    scrollbar-width: thin;
+  }
+  .cs-home .faq-tab { flex: 0 0 auto; white-space: nowrap; }
+
+  .cs-home .help-search { padding: 12px; }
+  .cs-home .form-card   { padding: 20px; }
+
+  .cs-home .page-section-head { flex-direction: column; align-items: flex-start; gap: 10px; }
+
+  /* Guides toolbar */
+  .cs-home .guides-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .cs-home .btn-create-guide { text-align: center; justify-content: center; }
+
+  /* Guide finish actions */
+  .cs-home .guide-finish-actions { flex-direction: column; align-items: stretch; }
+  .cs-home .guide-finish-actions > * { width: 100%; text-align: center; justify-content: center; }
 }
 
 @media (max-width: 600px) {
@@ -785,6 +832,12 @@
   .cs-home .resource-grid,
   .cs-home .help-categories,
   .cs-home .stat-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 400px) {
+  .cs-home .page-hero,
+  .cs-home .page-body { padding-left: 16px; padding-right: 16px; }
+  .cs-home .page-hero { padding-top: 28px; padding-bottom: 24px; }
 }
 
 /* ================================================================== */
