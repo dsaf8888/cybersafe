@@ -11,6 +11,11 @@ import HelpCenter from './pages/HelpCenter'
 import Blog from './pages/blog/Blog'
 import BlogPost from './pages/blog/BlogPost'
 import CreateBlog from './pages/blog/CreateBlog'
+import NetworkSecurityTest from './pages/tools/NetworkSecurityTest'
+import URLScanner from './pages/tools/URLScanner'
+import PasswordStrength from './pages/tools/PasswordStrength'
+import EmailBreachChecker from './pages/tools/EmailBreachChecker'
+import PhishingQuiz from './pages/tools/PhishingQuiz'
 
 export default function App() {
   return (
@@ -20,6 +25,11 @@ export default function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/blog/create" element={<CreateBlog />} />
         <Route path="/blog/:slug" element={<BlogPost />} />
+        <Route path="/tools/network-security" element={<NetworkSecurityTest />} />
+        <Route path="/tools/url-scanner" element={<URLScanner />} />
+        <Route path="/tools/password-strength" element={<PasswordStrength />} />
+        <Route path="/tools/email-breach" element={<EmailBreachChecker />} />
+        <Route path="/tools/phishing-quiz" element={<PhishingQuiz />} />
         <Route path="/privacy" element={<PrivacyPolicy />} />
         <Route path="/terms" element={<TermsAndConditions />} />
         <Route path="/about" element={<AboutUs />} />

@@ -1,98 +1,7 @@
 import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 import PageLayout, { PageHero } from '../components/layout/PageLayout'
-
-const GUIDES = [
-  {
-    level: 'beginner',
-    icon: '🔑',
-    cover: 'blue',
-    tag: 'Passwords',
-    tagClass: '',
-    title: 'How to Build a Strong Password You Can Actually Remember',
-    desc: 'A passphrase approach that beats most password managers — without the sticky-notes.',
-    meta: '12 min · Beginner',
-  },
-  {
-    level: 'beginner',
-    icon: '📧',
-    cover: 'amber',
-    tag: 'Email',
-    tagClass: 'amber',
-    title: 'Spot a Phishing Email in 30 Seconds',
-    desc: 'The 5 red flags every phishing message gives away, with real-world examples.',
-    meta: '8 min · Beginner',
-  },
-  {
-    level: 'beginner',
-    icon: '🔐',
-    cover: 'green',
-    tag: 'Setup',
-    tagClass: 'green',
-    title: 'Turn On Two-Factor Authentication Everywhere',
-    desc: 'Step-by-step screenshots for Gmail, Instagram, banking apps, WhatsApp, and more.',
-    meta: '15 min · Beginner',
-  },
-  {
-    level: 'intermediate',
-    icon: '🌐',
-    cover: 'purple',
-    tag: 'Browsing',
-    tagClass: 'purple',
-    title: 'Configure Your Browser for Privacy & Speed',
-    desc: 'Recommended Chrome, Firefox, Brave, and Edge settings to block trackers and ads.',
-    meta: '20 min · Intermediate',
-  },
-  {
-    level: 'intermediate',
-    icon: '📱',
-    cover: 'rose',
-    tag: 'Mobile',
-    tagClass: 'rose',
-    title: 'Lock Down Your Smartphone in 10 Steps',
-    desc: 'Permissions, app review, encrypted backups, and the one toggle most people miss.',
-    meta: '18 min · Intermediate',
-  },
-  {
-    level: 'intermediate',
-    icon: '💾',
-    cover: 'slate',
-    tag: 'Backup',
-    tagClass: '',
-    title: 'A Sane Backup Strategy for Personal Data',
-    desc: 'The 3-2-1 rule explained with free tools — never lose photos or documents again.',
-    meta: '14 min · Intermediate',
-  },
-  {
-    level: 'advanced',
-    icon: '🛡️',
-    cover: 'green',
-    tag: 'Network',
-    tagClass: 'green',
-    title: 'Set Up DNS-Level Ad and Tracker Blocking',
-    desc: 'Use NextDNS, Pi-hole, or AdGuard Home to protect every device on your network.',
-    meta: '35 min · Advanced',
-  },
-  {
-    level: 'advanced',
-    icon: '🔓',
-    cover: 'rose',
-    tag: 'Recovery',
-    tagClass: 'rose',
-    title: 'What to Do If Your Email Account Is Hacked',
-    desc: 'A 60-minute emergency runbook to regain access and contain the damage.',
-    meta: '25 min · Advanced',
-  },
-  {
-    level: 'advanced',
-    icon: '👨‍💻',
-    cover: 'purple',
-    tag: 'Developer',
-    tagClass: 'purple',
-    title: 'Storing Secrets Securely in Modern Apps',
-    desc: 'Environment variables, secret managers, and rotating keys — done the right way.',
-    meta: '30 min · Advanced',
-  },
-]
+import { GUIDES } from '../data/guides'
 
 const LEVELS = [
   { id: 'all', label: 'All Guides' },
@@ -132,7 +41,7 @@ export default function Guides() {
 
         <div className="resource-grid">
           {filtered.map((g) => (
-            <a className="resource-card" key={g.title} href="#guide">
+            <Link className="resource-card" key={g.slug} to={`/guides/${g.slug}`}>
               <div className={`resource-cover ${g.cover}`} aria-hidden>{g.icon}</div>
               <div className="resource-body">
                 <span className={`resource-tag ${g.tagClass}`}>{g.tag}</span>
@@ -143,7 +52,7 @@ export default function Guides() {
                   <span className="read-arrow">Read →</span>
                 </div>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
       </main>

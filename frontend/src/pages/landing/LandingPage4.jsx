@@ -243,6 +243,16 @@ export default function LandingPage4() {
         </div>
         <div className="tools-grid">
           <div className="tool-card">
+            <div className="tool-img" style={{ background: 'linear-gradient(135deg,#0f172a,#1e293b)', color: '#fff' }}>🛡️</div>
+            <div className="tool-name">Network Security Test</div>
+            <ul className="tool-checks">
+              <li>Detect DNS &amp; WebRTC leaks</li>
+              <li>Spot open ports &amp; weak TLS</li>
+              <li>Get a security score &amp; fixes</li>
+            </ul>
+            <Link to="/tools/network-security" className="tool-link">Run Test →</Link>
+          </div>
+          <div className="tool-card">
             <div className="tool-img">🔐</div>
             <div className="tool-name">Password Strength</div>
             <ul className="tool-checks">
@@ -250,7 +260,7 @@ export default function LandingPage4() {
               <li>Estimate crack time</li>
               <li>Get suggestions</li>
             </ul>
-            <a href="#tools" className="tool-link">Try Now →</a>
+            <Link to="/tools/password-strength" className="tool-link">Try Now →</Link>
           </div>
           <div className="tool-card">
             <div className="tool-img" style={{ background: 'linear-gradient(135deg,#fff7ed,#fed7aa)' }}>📧</div>
@@ -260,17 +270,17 @@ export default function LandingPage4() {
               <li>See breach sources</li>
               <li>Get recovery steps</li>
             </ul>
-            <a href="#tools" className="tool-link">Try Now →</a>
+            <Link to="/tools/email-breach" className="tool-link">Check now →</Link>
           </div>
           <div className="tool-card">
             <div className="tool-img" style={{ background: 'linear-gradient(135deg,#f0fdf4,#bbf7d0)' }}>🔗</div>
             <div className="tool-name">URL Safety Scanner</div>
             <ul className="tool-checks">
               <li>Detect phishing or unsafe sites</li>
-              <li>Check HTTPS & domain age</li>
+              <li>Check HTTPS &amp; domain age</li>
               <li>Identify suspicious links</li>
             </ul>
-            <a href="#tools" className="tool-link">Try Now →</a>
+            <Link to="/tools/url-scanner" className="tool-link">Scan URL →</Link>
           </div>
           <div className="tool-card">
             <div className="tool-img" style={{ background: 'linear-gradient(135deg,#faf5ff,#e9d5ff)' }}>🎣</div>
@@ -280,7 +290,7 @@ export default function LandingPage4() {
               <li>Learn from mistakes</li>
               <li>Improve your security habits</li>
             </ul>
-            <a href="#tools" className="tool-link">Try Now →</a>
+            <Link to="/tools/phishing-quiz" className="tool-link">Take quiz →</Link>
           </div>
         </div>
       </section>
