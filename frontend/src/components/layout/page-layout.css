@@ -1,0 +1,788 @@
+/* ===========================================================
+   Shared styles for content/sub pages (Privacy, Terms, FAQ…)
+   Scoped under .cs-home .cs-page so they don't leak.
+   =========================================================== */
+
+.cs-home.cs-page {
+  background: var(--white);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-home.cs-page > nav + * {
+  flex: 1;
+}
+
+/* Fill-viewport mode: page itself never scrolls; children manage their own scroll */
+.cs-home.cs-page-fill {
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.cs-home.cs-page-fill > nav + * {
+  min-height: 0;
+  height: calc(100vh - 64px); /* nav height = 64px */
+  overflow: hidden;
+}
+
+/* PAGE HERO --------------------------------------------------- */
+.cs-home .page-hero {
+  background: linear-gradient(135deg, #f0f6ff 0%, #eef4ff 50%, #f6f0ff 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 72px 60px 64px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-home .page-hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(800px 240px at 80% 0%, rgba(26, 109, 255, 0.10), transparent 60%),
+    radial-gradient(600px 200px at 0% 100%, rgba(34, 197, 94, 0.08), transparent 70%);
+  pointer-events: none;
+}
+
+.cs-home .page-hero-inner {
+  position: relative;
+  max-width: 920px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cs-home .page-hero-badge {
+  display: inline-block;
+  padding: 4px 14px;
+  background: var(--white);
+  color: var(--blue);
+  border: 1px solid var(--blue-light);
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.cs-home .page-hero-eyebrow {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.cs-home .page-hero-title {
+  font-size: clamp(1.9rem, 3.6vw, 2.75rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+  color: var(--text);
+  margin-bottom: 14px;
+}
+
+.cs-home .page-hero-subtitle {
+  font-size: 1.05rem;
+  color: var(--muted);
+  line-height: 1.65;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+/* PAGE CONTENT WRAPPER --------------------------------------- */
+.cs-home .page-body {
+  padding: 56px 60px 80px;
+  max-width: 1180px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.cs-home .page-body.narrow { max-width: 860px; }
+
+/* LEGAL / DOC SECTIONS --------------------------------------- */
+.cs-home .doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--muted);
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 12px 18px;
+  margin-bottom: 32px;
+}
+
+.cs-home .doc-meta strong { color: var(--text); margin-right: 4px; }
+
+.cs-home .doc-section { margin-bottom: 36px; }
+
+.cs-home .doc-section h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--text);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-home .doc-section h2 .doc-num {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 30px;
+  height: 30px;
+  padding: 0 9px;
+  border-radius: 8px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cs-home .doc-section h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin: 18px 0 8px;
+  color: var(--text);
+}
+
+.cs-home .doc-section p,
+.cs-home .doc-section li {
+  color: #334155;
+  font-size: 0.96rem;
+  line-height: 1.75;
+}
+
+.cs-home .doc-section p { margin-bottom: 12px; }
+
+.cs-home .doc-section ul,
+.cs-home .doc-section ol {
+  padding-left: 22px;
+  margin-bottom: 12px;
+}
+
+.cs-home .doc-section li { margin-bottom: 6px; }
+
+.cs-home .doc-callout {
+  border-left: 4px solid var(--blue);
+  background: var(--blue-light);
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin: 18px 0;
+  font-size: 0.92rem;
+  color: #1e3a8a;
+}
+
+.cs-home .doc-callout.green {
+  border-left-color: var(--green);
+  background: #ecfdf5;
+  color: #14532d;
+}
+
+.cs-home .doc-callout.amber {
+  border-left-color: var(--orange);
+  background: #fff7ed;
+  color: #7c2d12;
+}
+
+/* ABOUT US --------------------------------------------------- */
+.cs-home .about-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin-bottom: 56px;
+}
+
+.cs-home .about-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 26px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cs-home .about-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+}
+
+.cs-home .about-card .about-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 12px;
+  background: var(--blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.cs-home .about-card h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.cs-home .about-card p { color: var(--muted); font-size: 0.92rem; line-height: 1.65; }
+
+.cs-home .about-mission {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  margin-bottom: 56px;
+}
+
+.cs-home .about-mission h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.cs-home .about-mission p { color: var(--muted); margin-bottom: 12px; line-height: 1.75; }
+
+.cs-home .about-mission-visual {
+  aspect-ratio: 4 / 3;
+  background:
+    radial-gradient(400px 180px at 80% 0%, rgba(26, 109, 255, 0.18), transparent 65%),
+    radial-gradient(360px 180px at 0% 100%, rgba(34, 197, 94, 0.14), transparent 65%),
+    linear-gradient(135deg, #f1f5ff 0%, #ecfdf5 100%);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7rem;
+  color: var(--blue);
+}
+
+.cs-home .stat-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  background: linear-gradient(135deg, var(--blue) 0%, #4f46e5 100%);
+  padding: 32px;
+  border-radius: 16px;
+  color: #fff;
+  margin-bottom: 56px;
+}
+
+.cs-home .stat-row .stat strong {
+  display: block;
+  font-size: 1.85rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+}
+
+.cs-home .stat-row .stat span { font-size: 0.85rem; opacity: 0.9; }
+
+.cs-home .team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.cs-home .team-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+}
+
+.cs-home .team-avatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, #1a6dff, #4f46e5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.cs-home .team-name { font-weight: 700; font-size: 1rem; }
+.cs-home .team-role { color: var(--blue); font-size: 0.85rem; margin-bottom: 8px; }
+.cs-home .team-bio { color: var(--muted); font-size: 0.85rem; line-height: 1.55; }
+
+/* FAQ -------------------------------------------------------- */
+.cs-home .faq-tabs {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 28px;
+  justify-content: center;
+}
+
+.cs-home .faq-tab {
+  padding: 8px 18px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--white);
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.2s;
+}
+
+.cs-home .faq-tab:hover { color: var(--blue); border-color: var(--blue-light); }
+
+.cs-home .faq-tab.active {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+}
+
+.cs-home .faq-list { display: flex; flex-direction: column; gap: 12px; }
+
+.cs-home .faq-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.2s, border-color 0.2s;
+}
+
+.cs-home .faq-item.open {
+  border-color: var(--blue-light);
+  box-shadow: 0 8px 22px rgba(26, 109, 255, 0.08);
+}
+
+.cs-home .faq-q {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 18px 22px;
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  font-family: inherit;
+}
+
+.cs-home .faq-q .faq-toggle {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: var(--blue-light);
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.cs-home .faq-item.open .faq-toggle {
+  transform: rotate(45deg);
+  background: var(--blue);
+  color: #fff;
+}
+
+.cs-home .faq-a {
+  padding: 0 22px 18px;
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.7;
+}
+
+.cs-home .faq-help-cta {
+  margin-top: 40px;
+  background: linear-gradient(135deg, #eef4ff, #f6f0ff);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.cs-home .faq-help-cta h3 { font-size: 1.15rem; font-weight: 800; margin-bottom: 4px; }
+.cs-home .faq-help-cta p { color: var(--muted); font-size: 0.9rem; }
+
+/* GUIDES / SAFETY TIPS -------------------------------------- */
+.cs-home .resource-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.cs-home .resource-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.cs-home .resource-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.08);
+}
+
+.cs-home .resource-cover {
+  height: 132px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.6rem;
+  background: linear-gradient(135deg, #f1f5ff, #e0ecff);
+}
+.cs-home .resource-cover.green { background: linear-gradient(135deg, #ecfdf5, #c7f5dd); }
+.cs-home .resource-cover.amber { background: linear-gradient(135deg, #fff7ed, #fed7aa); }
+.cs-home .resource-cover.purple { background: linear-gradient(135deg, #faf5ff, #e9d5ff); }
+.cs-home .resource-cover.rose { background: linear-gradient(135deg, #fef2f2, #fecaca); }
+.cs-home .resource-cover.slate { background: linear-gradient(135deg, #f1f5f9, #cbd5e1); }
+
+.cs-home .resource-body { padding: 18px 20px 22px; flex: 1; display: flex; flex-direction: column; }
+
+.cs-home .resource-tag {
+  display: inline-block;
+  align-self: flex-start;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--blue-light);
+  color: var(--blue);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.cs-home .resource-tag.green { background: #dcfce7; color: #15803d; }
+.cs-home .resource-tag.amber { background: #ffedd5; color: #c2410c; }
+.cs-home .resource-tag.purple { background: #ede9fe; color: #6d28d9; }
+.cs-home .resource-tag.rose { background: #fce7f3; color: #be185d; }
+
+.cs-home .resource-title { font-weight: 700; font-size: 1.02rem; margin-bottom: 6px; color: var(--text); }
+.cs-home .resource-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.6; flex: 1; }
+
+.cs-home .resource-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 14px;
+}
+
+.cs-home .resource-meta .read-arrow { color: var(--blue); font-weight: 600; }
+
+/* TIP LIST --------------------------------------------------- */
+.cs-home .tip-list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+.cs-home .tip-item {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  transition: border-color 0.2s, transform 0.2s;
+}
+
+.cs-home .tip-item:hover { border-color: var(--blue-light); transform: translateY(-2px); }
+
+.cs-home .tip-num {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--blue), #4f46e5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.95rem;
+  flex-shrink: 0;
+}
+
+.cs-home .tip-content h4 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.cs-home .tip-content p { color: var(--muted); font-size: 0.88rem; line-height: 1.65; }
+
+/* FORMS ------------------------------------------------------ */
+.cs-home .form-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px;
+  box-shadow: 0 4px 24px rgba(15, 23, 42, 0.04);
+}
+
+.cs-home .form-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.cs-home .form-field { display: flex; flex-direction: column; margin-bottom: 16px; }
+
+.cs-home .form-field label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+.cs-home .form-field input,
+.cs-home .form-field select,
+.cs-home .form-field textarea {
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 11px 14px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  background: var(--white);
+  color: var(--text);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.cs-home .form-field input:focus,
+.cs-home .form-field select:focus,
+.cs-home .form-field textarea:focus {
+  outline: none;
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px rgba(26, 109, 255, 0.15);
+}
+
+.cs-home .form-field textarea { min-height: 130px; resize: vertical; }
+
+.cs-home .form-field .field-hint {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.cs-home .btn-submit {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 12px 26px;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.2s;
+}
+
+.cs-home .btn-submit:hover { background: var(--blue-dark); }
+
+.cs-home .form-success {
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  border-radius: 12px;
+  padding: 18px 22px;
+  color: #065f46;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.cs-home .form-success strong { display: block; margin-bottom: 4px; }
+
+/* HELP CENTER ------------------------------------------------ */
+.cs-home .help-search {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 6px 24px rgba(15, 23, 42, 0.06);
+  max-width: 640px;
+  margin: 28px auto 0;
+}
+
+.cs-home .help-search input {
+  flex: 1;
+  border: none;
+  background: none;
+  font-size: 1rem;
+  font-family: inherit;
+  color: var(--text);
+}
+.cs-home .help-search input:focus { outline: none; }
+
+.cs-home .help-search button {
+  background: var(--blue);
+  color: #fff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.cs-home .help-categories {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+  margin-top: 16px;
+}
+
+.cs-home .help-cat {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.cs-home .help-cat:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(15, 23, 42, 0.08); }
+.cs-home .help-cat .help-cat-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: var(--blue-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--blue);
+}
+.cs-home .help-cat h3 { font-size: 1rem; font-weight: 700; margin-bottom: 4px; }
+.cs-home .help-cat p { font-size: 0.85rem; color: var(--muted); line-height: 1.55; }
+.cs-home .help-cat .help-cat-count {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.78rem;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+.cs-home .help-articles {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.cs-home .help-article {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.cs-home .help-article:hover { border-color: var(--blue-light); transform: translateX(2px); }
+.cs-home .help-article .ha-title { font-weight: 600; font-size: 0.92rem; }
+.cs-home .help-article .ha-meta { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.cs-home .help-article .ha-arrow { color: var(--blue); font-weight: 600; }
+
+/* SECTION HEADING (in-page) --------------------------------- */
+.cs-home .page-section { margin-bottom: 56px; }
+
+.cs-home .page-section-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.cs-home .page-section-head h2 {
+  font-size: clamp(1.5rem, 2.6vw, 2rem);
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+
+.cs-home .page-section-head p { color: var(--muted); }
+
+/* TOC -------------------------------------------------------- */
+.cs-home .legal-toc {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 22px;
+  margin-bottom: 32px;
+}
+
+.cs-home .legal-toc h4 {
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.cs-home .legal-toc ol {
+  list-style: none;
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 4px 18px;
+}
+
+.cs-home .legal-toc a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+
+.cs-home .legal-toc a:hover { text-decoration: underline; }
+
+/* RESPONSIVE ------------------------------------------------- */
+@media (max-width: 960px) {
+  .cs-home .page-hero { padding: 56px 24px 48px; }
+  .cs-home .page-body { padding: 40px 24px 64px; }
+  .cs-home .about-grid,
+  .cs-home .team-grid,
+  .cs-home .resource-grid,
+  .cs-home .help-categories { grid-template-columns: repeat(2, 1fr); }
+  .cs-home .stat-row { grid-template-columns: repeat(2, 1fr); }
+  .cs-home .about-mission,
+  .cs-home .form-grid { grid-template-columns: 1fr; }
+  .cs-home .tip-list,
+  .cs-home .help-articles { grid-template-columns: 1fr; }
+  .cs-home .legal-toc ol { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+  .cs-home .about-grid,
+  .cs-home .team-grid,
+  .cs-home .resource-grid,
+  .cs-home .help-categories,
+  .cs-home .stat-row { grid-template-columns: 1fr; }
+}
